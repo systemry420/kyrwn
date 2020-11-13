@@ -40,15 +40,12 @@ nav ul li:hover {
 
 main {
     font-family: amiri;
-}
-
-.levels {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.levels section {
+main section {
     width: 40%;
     border: 1px solid gray;
     border-radius: 10px;
@@ -60,12 +57,5 @@ main {
     font-size: 3em;
     margin: .4em;
     box-shadow: 0 0 7px 7px rgba(0, 0, 0, 0.25);
-}
-
-.bt {
-    background-color: rgb(0, 182, 182);
-}
-
-.ts {
     background-color: teal;
 }

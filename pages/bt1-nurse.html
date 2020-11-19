@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
     <title>Kayrawan Quiz</title>
-    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
     <nav>
@@ -16,8 +17,17 @@
     </nav>
 
     <main>
-        <h1>Contact</h1>
+        <button id="start">بدء الاختبار</button>
+
     </main>
 
+    <script>
+        const main = document.querySelector('main')
+        const start = document.querySelector('#start')
+        start.addEventListener('click', showQuiz)
+        function showQuiz() {
+            main.innerHTML = "hell"
+        }
+    </script>
 </body>
 </html>

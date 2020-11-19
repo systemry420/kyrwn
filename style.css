@@ -6,6 +6,12 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #222;
+}
+
 nav {
     background-color: #bada55;
     font-family: Arial, Helvetica, sans-serif;
@@ -39,13 +45,19 @@ nav ul li:hover {
 }
 
 main {
-    font-family: amiri;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    margin: 2em 0;
 }
 
 main section {
+    background-image: url('logo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.25);
+    font-family: amiri;
     width: 40%;
     border: 1px solid gray;
     border-radius: 10px;
@@ -56,6 +68,76 @@ main section {
     vertical-align: middle;
     font-size: 3em;
     margin: .4em;
+    /* background-color: teal; */
+    text-align: center;
+    cursor: pointer;
     box-shadow: 0 0 7px 7px rgba(0, 0, 0, 0.25);
-    background-color: teal;
+}
+
+main section a {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+}
+
+
+@media screen and (min-width: 300px) {
+    nav ul li {
+        padding: 1.2em .5em;
+        font-size: .8em;
+
+        text-transform: uppercase;
+    }
+
+    main section {
+        width: 90%;
+        /* font-size: 2em; */
+    }
+
+    .container {
+        width: 90%;
+    }
+    
+}
+
+
+
+.container {
+    width: 600px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    margin: 2em;
+}
+
+#quiz {
+    display: none;
+}
+
+.container-header {
+    padding: 2em;
+}
+
+#list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#list li {
+    margin: 1em 0;
+}
+
+button {
+    width: 100%;
+    background-color: #bada55;
+    border: none;
+    display: block;
+    cursor: pointer;
+    padding: 1em;
+    font-size: 1em;
+    font-weight: 800;
+}
+
+button:hover {
+    background: #789d00;
 }

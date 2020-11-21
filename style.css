@@ -91,33 +91,6 @@ main section a {
 }
 
 
-@media screen and (max-width: 768px) {
-    nav ul li {
-        padding: 1.2em .5em;
-        font-size: .8em;
-    }
-
-    main {
-        display: flex;
-        flex-direction: column;
-    }
-
-    main section {
-        width: 90%;
-        /* font-size: 2em; */
-    }
-
-    .sections section {
-        width: 90%;
-    }
-
-
-    .container {
-        width: 90%;
-    }
-    
-}
-
 
 
 .container {
@@ -244,4 +217,36 @@ button:hover {
 
 .info img {
     margin-left: 1em;
+}
+
+
+@media screen and (max-width: 768px) {
+    nav ul li {
+        padding: 1.2em .5em;
+        font-size: .8em;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    main section {
+        width: 90%;
+        /* font-size: 2em; */
+    }
+
+    .sections section {
+        width: 90%;
+    }
+
+
+    .container {
+        width: 90%;
+    }
+
+    .info {
+        display: block;
+    }
+    
 }

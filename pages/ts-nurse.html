@@ -49,7 +49,7 @@
     <main>
         <div id="image">
             <img src="../logo.jpg"  height="120" />
-            <h1> العلوم الاجتماعية</h1>
+            <h1> العناية الصحية</h1>
         </div>
         <button id="start">بدء الاختبار</button>
         <div class="container" id="quiz">
@@ -98,7 +98,7 @@
         // window.addEventListener('load', showQuiz)
         function showQuiz() {
             start.style.display = 'none'
-            const ref = db.collection('quiz1')
+            const ref = db.collection('quiz3')
             ref.get().then(snap=>{
                 snap.docs.forEach(doc=>{
                     quizData=Object.entries(doc.data())
@@ -148,8 +148,8 @@
 
         submitBtn.addEventListener("click", ()=>{
             let yourAnswer = getSelected();
-            // console.log(yourAnswer);
             if(yourAnswer){
+            console.log(yourAnswer);
                 if(check(yourAnswer)){
                     // console.log(check(yourAnswer));
                     score++;
@@ -162,8 +162,8 @@
                 else {
                     quiz.innerHTML = `<h2> لقد قمت بالإجابة عن ${score} من أصل ${quizData.length}</h2>`;
                 }
+                yourAnswer = null
             }
-            yourAnswer = false
 
         })
     </script>

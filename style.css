@@ -47,16 +47,23 @@ nav ul li:hover {
 main {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 2em 0;
+    font-family: amiri;
 }
 
-main section {
-    background-image: url('logo.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: rgba(0, 0, 0, 0.25);
+.sections {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.sections section {
     font-family: amiri;
     width: 40%;
     border: 1px solid gray;
@@ -80,18 +87,26 @@ main section a {
 }
 
 
-@media screen and (min-width: 300px) {
+@media screen and (max-width: 768px) {
     nav ul li {
         padding: 1.2em .5em;
         font-size: .8em;
+    }
 
-        text-transform: uppercase;
+    main {
+        display: flex;
+        flex-direction: column;
     }
 
     main section {
         width: 90%;
         /* font-size: 2em; */
     }
+
+    .sections section {
+        width: 90%;
+    }
+
 
     .container {
         width: 90%;
@@ -102,12 +117,14 @@ main section a {
 
 
 .container {
-    width: 600px;
+    direction: rtl;
+    max-width: 600px;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.25);
     overflow: hidden;
-    margin: 2em;
+    margin: 2em auto;
+    font-family: amiri;
 }
 
 #quiz {
@@ -125,6 +142,48 @@ main section a {
 
 #list li {
     margin: 1em 0;
+    font-size: 1.3em;
+    border-bottom: 1px solid lightgray;
+    padding: .5em;
+    align-items: center;
+    display: flex;
+}
+
+#list li label {
+    margin: 0 10px;
+}
+
+input[type='radio']{
+    width: 20px;
+    height: 20px;
+}
+
+#image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+.img {
+    /* border: 1px solid #111; */
+    border-radius: 20% 50% 50% 50%;
+    animation: rotate 1s linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: scale(0.2);
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+        transform: scale(0.5);
+    }
+    100%{
+        transform: scale(1);
+        transform: rotate(360deg);
+    }
 }
 
 button {
@@ -140,4 +199,45 @@ button {
 
 button:hover {
     background: #789d00;
+}
+
+.about {
+    direction: rtl;
+    width: 90%;
+    border: 1px solid lightgray;
+    box-shadow: 0 0 5px 5px lightgray;
+    font-size: 1.3em;
+}
+
+.about h1 {
+    text-align: center;
+    margin: .5em;
+}
+
+.about p {
+    margin: 1em;
+}
+
+.staff {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    direction: rtl;
+}
+
+.staff section {
+    width: 90%;
+    padding: 1.5em;
+    border-radius: 10px;
+    box-shadow: 0 0 7px 7px lightgray;
+    font-size: 1.2em;
+    margin: 1em;
+}
+
+.info {
+    display: flex;
+}
+
+.info img {
+    margin-left: 1em;
 }

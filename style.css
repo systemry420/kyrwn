@@ -203,7 +203,7 @@ button:hover {
 }
 
 .staff section {
-    width: 90%;
+    width: 40%;
     padding: 1.5em;
     border-radius: 10px;
     box-shadow: 0 0 7px 7px lightgray;
@@ -217,6 +217,16 @@ button:hover {
 
 .info img {
     margin-left: 1em;
+}
+
+.info-2 {
+    display: none;
+}
+
+.more {
+    font-family: amiri;
+    padding: .5em;
+    border-radius: 5px;
 }
 
 
@@ -237,6 +247,10 @@ button:hover {
     }
 
     .sections section {
+        width: 90%;
+    }
+
+    .staff section {
         width: 90%;
     }
 

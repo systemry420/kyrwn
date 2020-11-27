@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style2.css">
     <title>Kayrawan Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -66,7 +67,7 @@
                 <a href="../staff.html">
                     <i class="fa fa-address-card fa-2x"></i>
                     <span>
-                        الهيئة
+                        من نحن
                     </span>
                 </a>
             </li>
@@ -97,7 +98,7 @@
                     </li>
                 </ul>
             </div>
-        <button id="submit">Submit</button>
+        <button id="submit">متابعة</button>
         </div>
     </main>
 
@@ -187,7 +188,9 @@
                     loadQuestion();
                 }
                 else {
-                    quiz.innerHTML = `<h2> لقد قمت بالإجابة عن ${score} من أصل ${quizData.length}</h2>`;
+                    quiz.innerHTML = `<h2 style='padding: 1em'> لقد قمت بالإجابة عن ${score} من أصل ${quizData.length}</h2>
+                    <button onclick='location.reload()'>إعادة الاختبار</button>
+                    `;
                 }
             }
             yourAnswer = false

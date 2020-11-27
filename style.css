@@ -13,7 +13,7 @@ a {
 }
 
 nav {
-    background-color: #bada55;
+    background-color: #9ac01e;
     font-family: amiri;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
     margin-bottom: 10px;
@@ -43,7 +43,8 @@ nav ul li a {
     height: 60px;
 }
 
-nav ul li:hover {
+
+nav ul li:hover, nav ul li:active {
     background-color: #ddd;
     cursor: pointer;
 }
@@ -70,7 +71,6 @@ main {
 .sections section {
     font-family: amiri;
     width: 40%;
-    border: 1px solid gray;
     border-radius: 10px;
     min-height: 50vh;
     display: flex;
@@ -78,11 +78,11 @@ main {
     align-items: center;
     vertical-align: middle;
     font-size: 3em;
-    margin: .4em;
+    margin-bottom: .4em;
     /* background-color: teal; */
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 0 7px 7px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 7px 7px lightgray;
 }
 
 main section a {
@@ -101,7 +101,7 @@ main section a {
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.25);
     overflow: hidden;
     margin: 2em auto;
-    font-family: amiri;
+    /* font-family: amiri; */
 }
 
 #quiz {
@@ -109,7 +109,11 @@ main section a {
 }
 
 .container-header {
-    padding: 2em;
+    padding: 1em;
+}
+
+.container-header h1 {
+    padding: .3em;
 }
 
 #list {
@@ -140,6 +144,7 @@ input[type='radio']{
     flex-direction: column;
     align-items: center;
     margin-bottom: 2em;
+    color: #222;
 }
 
 .img {
@@ -172,18 +177,21 @@ button {
     padding: 1em;
     font-size: 1em;
     font-weight: 800;
+    font-family: amiri;
 }
 
 button:hover {
     background: #789d00;
 }
 
-.about {
+.about, .contact {
     direction: rtl;
     width: 90%;
     border: 1px solid lightgray;
-    box-shadow: 0 0 5px 5px lightgray;
+    box-shadow: 0 0 7px 7px lightgray;
     font-size: 1.3em;
+    color: #333;
+    border-radius: 10px;
 }
 
 .about h1 {
@@ -208,25 +216,65 @@ button:hover {
     border-radius: 10px;
     box-shadow: 0 0 7px 7px lightgray;
     font-size: 1.2em;
-    margin: 1em;
+    margin-bottom: 2em;
 }
 
 .info {
     display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    color: #222;
 }
 
 .info img {
     margin-left: 1em;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
 }
 
 .info-2 {
     display: none;
+    margin-top: 20px;
+    color: #333;
+}
+
+.info-2 div {
+    padding: .2em 0;
 }
 
 .more {
     font-family: amiri;
     padding: .5em;
+    margin-top: 20px;
     border-radius: 5px;
+}
+
+footer {
+    background-color: #2d711f;
+    padding: 1em 2em;
+    font-family: amiri;
+    font-size: 1.4em;
+    direction: rtl;
+}
+
+footer ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    justify-content: space-around;
+}
+
+footer ul li {
+    margin: 1em 0;
+    justify-self: center;
+}
+
+
+footer ul li a {
+    color: #fee;
+    border-bottom: 3px solid #ccc;
 }
 
 
@@ -245,12 +293,13 @@ button:hover {
         width: 90%;
         /* font-size: 2em; */
     }
-
+    
     .sections section {
         width: 90%;
     }
-
+    
     .staff section {
+
         width: 90%;
     }
 
@@ -261,6 +310,8 @@ button:hover {
 
     .info {
         display: block;
+        /* display: flex; */
+        align-items: center;
     }
     
 }

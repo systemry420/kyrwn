@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../style2.css">
     <title>Kayrawan Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
@@ -36,8 +37,7 @@
 
         db.settings({ timestampsInSnapshots: true})
         </script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    
 </head>
 <body>
     <nav>
@@ -77,23 +77,25 @@
     <main>
         <div id="image">
             <img src="../logo.jpg"  height="120" />
-            <h1>BT3 تمريض<br> العناية الصحية</h1>
+            <h1> BT3 تمريض
+                <br>
+                العناية الصحية
+            </h1>
         </div>
-        <button id="start">بدء الاختبار</button>
         <div class="container" id="quiz">
             <div class="container-header">
                 <h1 id="question"></h1>
                 <ul id="list">
                     <li>
-                        <input type="radio" name="answer" id="0" class="answer radio">
+                        <input type="radio" name="answer" id="1" class="answer">
                         <label for="1" id="a_text"></label>
                     </li>
                     <li>
-                        <input type="radio" name="answer" id="1" class="answer radio">
+                        <input type="radio" name="answer" id="2" class="answer">
                         <label for="2" id="b_text"></label>
                     </li>
                     <li>
-                        <input type="radio" name="answer" id="2" class="answer radio">
+                        <input type="radio" name="answer" id="3" class="answer">
                         <label for="3" id="c_text"></label>
                     </li>
                 </ul>
@@ -104,7 +106,7 @@
 
     <script>
         const main = document.querySelector('main')
-        const start = document.querySelector('#start')
+        // const start = document.querySelector('#start')
         let currentQuiz = 0;
         let score = 0;
         let answer = undefined;
@@ -117,27 +119,40 @@
         let answerEls = document.querySelectorAll('.answer');
         let question = null
 
-        start.addEventListener('click', ()=>{
-            showQuiz()
-        })
+        
 
         let quizData = null,
             arr = null;
-        // window.addEventListener('load', showQuiz)
-        function showQuiz() {
-            start.style.display = 'none'
-            const ref = db.collection('quiz2')
+        window.addEventListener('load', load)
+
+        function load() {
+            const ref = db.collection('bt3-nurse')
+            
             ref.get().then(snap=>{
-                snap.docs.forEach(doc=>{
-                    quizData=Object.entries(doc.data())
-                    loadQuiz(quizData)
-                })
+                // console.log(snap.docs[0].data());
+                // console.log(snap.docs[1].data());
+                for (let i = 0; i < snap.docs.length; i++) {
+                    const quiz = snap.docs[i];
+                    // console.log(quiz.data());
+                    const start = document.createElement('button')
+                    start.setAttribute('class', 'start')
+                    start.innerText = 'بدء الاختبار '+i
+                    start.addEventListener('click', ()=>{
+                        loadQuiz(quiz)
+                    })
+                    main.appendChild(start)
+                }
             })
         }
-        
-        
+                    
         function loadQuiz(quizData) {
-            arr = quizData
+            const btn = document.querySelectorAll('.start');
+            btn.forEach(b => {
+                b.style.display = 'none'
+            });
+            quizData=Object.entries(quizData.data())
+            arr = quizData[0][1]
+            // console.log(arr);
             loadQuestion()
             quiz.style.display = 'block'
         }
@@ -145,16 +160,17 @@
         function loadQuestion(){
             question = arr[currentQuiz]
             // check(question)
-            questionEl.innerText = question[0];
-            const options = question[1].slice(0,3);
+            questionEl.innerText = question.ques[0];
+            // console.log(question.q[0]);
+            const options = question.ques.slice(1,4);
             aEl.innerText = options[0]
             bEl.innerText = options[1]
             cEl.innerText = options[2]
         }
         
         function check(ans) {
-            // console.log(question[1][3], ans);
-            if(ans ==  question[1][3])
+            console.log(question.ques[4], ans);
+            if(ans ==  question.ques[4])
                 return true;
             return false
         }
@@ -188,12 +204,13 @@
                     loadQuestion();
                 }
                 else {
-                    quiz.innerHTML = `<h2 style='padding: 1em'> لقد قمت بالإجابة عن ${score} من أصل ${quizData.length}</h2>
-                    <button onclick='location.reload()'>إعادة الاختبار</button>`;
+                    quiz.innerHTML = `<h2 style='padding: 1em'> لقد قمت بالإجابة عن ${score} من أصل ${arr.length}</h2>
+                    <button onclick='location.reload()'>إعادة الاختبار</button>
+                    `;
                 }
-
             }
-            yourAnswer = null
+            yourAnswer = false
+
         })
     </script>
 </body>

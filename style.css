@@ -243,6 +243,10 @@ button:hover {
     padding: .2em 0;
 }
 
+.start {
+    margin: 5px 0;
+}
+
 .more {
     font-family: amiri;
     padding: .5em;

@@ -1,51 +1,16 @@
-// TODO: - load quizes for few seconds, and use kayrawan logo as loader
+const login = document.querySelector('#login')
+const error = document.querySelector('.error')
+login.addEventListener('submit', (e)=>{
+    e.preventDefault()
 
-const main = document.querySelector('main')
-window.addEventListener('load', init)
+    const email = login['email'].value
+    const password = login['password'].value
 
-function init() {
-    // showLevels()
-}
-
-function showLevels() {
-    let html = ''
-
-    const ref = db.collection('level')
-    ref
-        .get()
-        .then(snap=>{
-            snap.docs.forEach(doc => {
-                let sec = doc.id
-                html += `
-                    <section onclick="showSpecs()">
-                        <h1>${sec}</h1>
-                    </section>
-                `
-                main.innerHTML = html
-            });
-
-        })    
-}
-
-function showSpecs() {
-    const docRef = db.collection('level').doc('ts')
-    console.log(docRef.id);
-    docRef.get().then((snap)=>{
-        console.log(snap);
-        // snap.forEach(doc => {
-        //     console.log(doc.data());
-        // });
+    auth.signInWithEmailAndPassword(email, password).then(cred =>{
+        console.log(cred.user);
+        window.location = 'teacher.html'
     })
-}
-
-function showShit() {
-    let html = ''
-        const docRef = db.collection('level').doc('bt').collection('accounting')
-        console.log(docRef);
-
-    docRef.get().then((snap)=>{
-        snap.forEach(doc => {
-            console.log(doc.id);
-        });
+    .catch(err=>{
+        error.innerHTML = 'هناك خطأ في البريد أو في كلمة المرور'
     })
-}
+})

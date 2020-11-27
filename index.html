@@ -7,6 +7,36 @@
     <link rel="stylesheet" href="style2.css">
     <title>Kayrawan Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+            <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+         
+            <!-- Initialize Firebase -->
+            <script>
+                
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+                apiKey: "AIzaSyAiEA_TpvnjNib-EWCxn2awsT4x5L4kRwA",
+                authDomain: "kayrawan-quiz.firebaseapp.com",
+                databaseURL: "https://kayrawan-quiz.firebaseio.com",
+                projectId: "kayrawan-quiz",
+                storageBucket: "kayrawan-quiz.appspot.com",
+                messagingSenderId: "468059140378",
+                appId: "1:468059140378:web:7cc6d6f2cbb97962fafca3",
+                measurementId: "G-FL849SJ7KJ"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            // make firestore ref
+            const db = firebase.firestore()
+            
+            // make auth ref
+            const auth = firebase.auth()
+    
+            db.settings({ timestampsInSnapshots: true})
+            </script>
+    
 </head>
 <body>
     <nav>
@@ -90,8 +120,14 @@
                     </span>
                 </a>
             </li>
+            <li>
+                <a href="auth.html">
+                    <span>
+                        Teacher Portal
+                    </span>
+                </a>
+            </li>
         </ul>
-        <a href="teacher.html">Teacher Portal</a>
     </footer>
 
     <script src="app.js"></script>

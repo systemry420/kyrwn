@@ -40,6 +40,13 @@
         db.settings({ timestampsInSnapshots: true})
         </script>
         <style>
+            .buttons {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+            }
             .btn {
                 width: 80%;
                 margin-bottom: 2em;
@@ -52,7 +59,7 @@
 
             h1 {
                 text-align: center;
-                margin: 1em;
+                margin-bottom: 1em;
             }
 
             label {
@@ -103,7 +110,7 @@
             </li>
         </ul>
     </nav>
-    <div class="  teacher">
+    <div class=" teacher">
         <h1>إدخال الاختبار</h1>
     
     <form>
@@ -149,10 +156,10 @@
             <input required type="text" class="form-control" id="correct" placeholder="رقم الجواب" autocomplete="off">
           </div>
 
-         
-        <button id="next" class="btn btn-primary">السؤال التالي</button>
-        <br>
-        <button id="submit" type="submit" class="btn btn-danger">حفظ الإختبار</button>
+        <div class="buttons">
+            <button id="next" class="btn btn-primary">السؤال التالي</button>
+            <button id="submit" type="submit" class="btn btn-danger">حفظ الإختبار</button>
+        </div>
       </form>
     </div>
 

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Portal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+     
+        <!-- Initialize Firebase -->
+        <script>
+            
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyAiEA_TpvnjNib-EWCxn2awsT4x5L4kRwA",
+            authDomain: "kayrawan-quiz.firebaseapp.com",
+            databaseURL: "https://kayrawan-quiz.firebaseio.com",
+            projectId: "kayrawan-quiz",
+            storageBucket: "kayrawan-quiz.appspot.com",
+            messagingSenderId: "468059140378",
+            appId: "1:468059140378:web:7cc6d6f2cbb97962fafca3",
+            measurementId: "G-FL849SJ7KJ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // make firestore ref
+        const db = firebase.firestore()
+        
+        // make auth ref
+        const auth = firebase.auth()
+
+        db.settings({ timestampsInSnapshots: true})
+        </script>
+        <style>
+            .btn {
+                width: 80%;
+                margin-bottom: 2em;
+            }
+
+            .teacher {
+                background-color: #eee;
+                direction: rtl;
+            }
+
+            h1 {
+                text-align: center;
+                margin: 1em;
+            }
+
+            label {
+                float: right;
+            }
+
+            .form-group {
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            .form-control {
+                width: 80%;
+            }
+        </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html">
+                    <i class="fa fa-home fa-3x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="about.html">
+                    <i class="fa fa-university fa-2x"></i>
+                    <span>
+                        عن المعهد
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="contact.html">
+                <i class="fa fa-mobile fa-3x"></i>
+                    <span>
+                        اتصل بنا
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="staff.html">
+                    <i class="fa fa-address-card fa-2x"></i>
+                    <span>
+                        من نحن
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="  teacher">
+        <h1>إدخال الاختبار</h1>
+    
+    <form>
+        <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="subject">المادة</label>
+            <select required id="subject" class="form-control">
+              <option value="">- - - </option>
+              <option value="bt1-nurse"> العناية الصحية - BT1</option>
+              <option value="bt-social"> العلوم الاجتماعية- BT</option>
+              <option value="bt3-nurse"> العناية الصحية - BT3</option>
+              <option value="ts-nur-nurse"> العناية الصحية - TS</option>
+              <option value="ts-mar-edara"> الادارة التجارية - TS</option>
+              <option value="ts-pre-adab"> أدب أطفال - TS</option>
+              <option value="ts-pre-tara"> طرائق التدريس - TS</option>
+              <option value="ts-pre-tarikh"> تاريخ التيارات - TS</option>
+            </select>
+          </div>
+          <!-- when selecting subject, create new document in coll, then start adding questions -->
+
+          <div class="form-group col-md-6">
+            <label for="question">السؤال</label>
+            <input required type="text" class="form-control" id="question" placeholder="السؤال" autocomplete="off">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="option1">الخيار 1</label>
+            <input required type="text" class="form-control" id="option1" placeholder="الخيار 1" autocomplete="off">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="question">الخيار 2</label>
+            <input required type="text" class="form-control" id="option2" placeholder="الخيار 2" autocomplete="off">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="question">الخيار 3</label>
+            <input required type="text" class="form-control" id="option3" placeholder="الخيار 3" autocomplete="off">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="question">رقم الجواب</label>
+            <input required type="text" class="form-control" id="correct" placeholder="رقم الجواب" autocomplete="off">
+          </div>
+
+         
+        <button id="next" class="btn btn-primary">السؤال التالي</button>
+        <br>
+        <button id="submit" type="submit" class="btn btn-danger">حفظ الإختبار</button>
+      </form>
+    </div>
+
+    <script>
+
+
+        const subject = document.getElementById('subject'),
+            form = document.querySelector('form'),
+            question = document.getElementById('question'),
+            option1 = document.getElementById('option1'),
+            option2 = document.getElementById('option2'),
+            option3 = document.getElementById('option3'),
+            correct = document.getElementById('correct');
+        const submit = document.getElementById('submit'),
+            next = document.getElementById('next')
+
+        next.addEventListener('click', collectData)
+        let data = []
+        function collectData(e) {
+            e.preventDefault()
+            
+             let q = question.value,
+                o1 = option1.value,
+                o2 = option2.value,
+                o3 = option3.value,
+                c = correct.value;
+
+            let ob = {
+                ques: [
+                  q, o1, o2, o3, c
+                ]
+            }
+            console.log(ob);
+            data.push(ob)
+
+            question.value = ''
+            option1.value = ''
+            option2.value = ''
+            option3.value = ''
+            correct.value = ''
+            // console.log(subject);
+        }
+
+        subject.addEventListener('change', (e)=>{
+            // console.log(e.target.value);
+        })
+
+
+        submit.addEventListener('click', (e)=>{
+            e.preventDefault()
+            // console.log(subject.value);
+            writeData(data)
+        })
+
+        // console.log(ref.doc.data());
+        
+        let id;
+        
+        function writeData(data) {
+                console.log(subject.value);
+                const ref = db.collection(subject.value)
+                ref.get().then(snap=>{
+                    id = snap.docs.length + 1;
+                    console.log(id);
+                    // console.log(subject, question, option1, option2, option3, correct);
+
+                    if(id){
+                      // console.log(data);
+                        ref.doc(id.toString()).set({
+                            data
+                        })
+                        .then(() =>{
+                            console.log("done");
+                        })
+                        .catch(function(error) {
+                            console.error("Error writing document: ", error.message);
+                        });
+                    }
+                    else {
+                        console.log("hell");
+                    }
+                });
+                
+            }
+
+
+    </script>
+</body>
+</html>

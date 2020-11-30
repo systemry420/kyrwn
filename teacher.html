@@ -74,6 +74,10 @@
             .form-control {
                 width: 80%;
             }
+
+            .info {
+                text-align: center;
+            }
         </style>
 </head>
 <body>
@@ -111,8 +115,8 @@
         </ul>
     </nav>
     <div class=" teacher">
-        <h1>إدخال الاختبار</h1>
-    
+        <h1>اضافة اختبار</h1>
+        <p class="info"></p>
     <form>
         <div class="form-row">
         <div class="form-group col-md-4">
@@ -174,7 +178,8 @@
             option3 = document.getElementById('option3'),
             correct = document.getElementById('correct');
         const submit = document.getElementById('submit'),
-            next = document.getElementById('next')
+            next = document.getElementById('next'),
+            info = document.querySelector('.info')
 
         next.addEventListener('click', collectData)
         let data = []
@@ -232,11 +237,12 @@
                             data
                         })
                         .then(() =>{
-                            console.log("done");
+                            info.innerHTML = 'تم اضافة الاختبار، شكراَ لك'
                         })
                         .catch(function(error) {
-                            console.error("Error writing document: ", error.message);
+                            info.innerHTML = 'حصل خطأ، أعد المحاولة من فضلك'
                         });
+                        form.reset()
                     }
                     else {
                         console.log("hell");

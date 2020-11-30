@@ -102,6 +102,7 @@
             </div>
         <button id="submit">متابعة</button>
         </div>
+        <div class="wrong"></div>
     </main>
 
     <script>
@@ -117,7 +118,7 @@
         const cEl = document.getElementById('c_text');
         const submitBtn = document.getElementById('submit');
         let answerEls = document.querySelectorAll('.answer');
-        let question = null
+        let question = null, wrongArr = []
 
         
 
@@ -136,7 +137,7 @@
                     // console.log(quiz.data());
                     const start = document.createElement('button')
                     start.setAttribute('class', 'start')
-                    start.innerText = 'بدء الاختبار '+i
+                    start.innerText = 'بدء الاختبار '+ (i+1)
                     start.addEventListener('click', ()=>{
                         loadQuiz(quiz)
                     })
@@ -169,10 +170,20 @@
         }
         
         function check(ans) {
-            console.log(question.ques[4], ans);
-            if(ans ==  question.ques[4])
+            // console.log(question.ques[4], ans);
+            let correct = question.ques[4]
+            if(ans !=  correct){
+                const wrongAnswer = {
+                    question,
+                    ans,
+                    correct
+                }
+
+                wrongArr.push(wrongAnswer)
+            }
+            else {
                 return true;
-            return false
+            }
         }
 
         function getSelected (){
@@ -204,12 +215,35 @@
                     loadQuestion();
                 }
                 else {
-                    quiz.innerHTML = `<h2 style='padding: 1em'> لقد قمت بالإجابة عن ${score} من أصل ${arr.length}</h2>
-                    <button onclick='location.reload()'>إعادة الاختبار</button>
-                    `;
+                    let message = `<h2 style='padding: 1em'> لقد قمت بالإجابة عن ${score} من أصل ${arr.length}</h2>
+                    <button onclick='location.reload()'>إعادة الاختبار</button>`;
+                    quiz.innerHTML = message;
+                    
+                    if(wrongArr.length > 0) {
+                        let html = `<h1 style="text-align: center"> الأخطاء </h1>`
+                        wrongArr.forEach(wrongOb=>{
+                            console.log(wrongOb.question.ques);
+                            let ques = wrongOb.question.ques
+                            html += `
+                                <div class="container">
+                                <h2> ${ques[0]} </h2>
+                                <ul id=":list">`
+
+                            let bg = "", ans = wrongOb.ans, correct = wrongOb.correct
+                            for (let i = 1; i<=3; i++){
+                                bg = i == ans? 'red': i==correct? 'green': ''
+                                const option = ques[i]
+                                html += `<li style='color:${bg}'> ${option} </li>`
+                            }
+                            html += `</ul></div>`
+
+                        })
+                        document.querySelector('.wrong').innerHTML = html
+                    }
+                    
                 }
+                yourAnswer = null
             }
-            yourAnswer = false
 
         })
     </script>

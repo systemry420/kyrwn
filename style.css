@@ -281,6 +281,18 @@ footer ul li a {
     border-bottom: 3px solid #ccc;
 }
 
+.wrong {
+    max-width: 600px;
+    width: 100%;
+}
+
+.wrong .container {
+    padding: 1.2em;
+}
+
+.wrong ul {
+    list-style: none;
+}
 
 @media screen and (max-width: 768px) {
     nav ul li {

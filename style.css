@@ -83,15 +83,13 @@ main {
     text-align: center;
     cursor: pointer;
     box-shadow: 0 0 7px 7px lightgray;
+    margin: 25px;
 }
 
 main section a {
     background-color: rgba(255, 255, 255, 0.7);
     width: 100%;
 }
-
-
-
 
 .container {
     direction: rtl;
@@ -216,7 +214,7 @@ button:hover {
     border-radius: 10px;
     box-shadow: 0 0 7px 7px lightgray;
     font-size: 1.2em;
-    margin-bottom: 2em;
+    margin: 1em;
 }
 
 .info {

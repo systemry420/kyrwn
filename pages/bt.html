@@ -7,6 +7,36 @@
     <title>Kayrawan Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+    
+    <!-- Initialize Firebase -->
+    <script>
+        
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyAiEA_TpvnjNib-EWCxn2awsT4x5L4kRwA",
+        authDomain: "kayrawan-quiz.firebaseapp.com",
+        databaseURL: "https://kayrawan-quiz.firebaseio.com",
+        projectId: "kayrawan-quiz",
+        storageBucket: "kayrawan-quiz.appspot.com",
+        messagingSenderId: "468059140378",
+        appId: "1:468059140378:web:7cc6d6f2cbb97962fafca3",
+        measurementId: "G-FL849SJ7KJ"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // make firestore ref
+    const db = firebase.firestore()
+    
+    // make auth ref
+    const auth = firebase.auth()
+
+    db.settings({ timestampsInSnapshots: true})
+    </script>
+    
 </head>
 <body>
     <nav>
@@ -28,7 +58,7 @@
                 <a href="../contact.html">
                 <i class="fa fa-mobile fa-3x"></i>
                     <span>
-                        تواصل معنا
+                        اتصل بنا
                     </span>
                 </a>
             </li>
@@ -45,25 +75,51 @@
     <main>
         <div id="image">
             <img src="../logo.jpg"  height="120" />
-            <h1 style="text-align: center;">معهد القيروان الفني</h1>
+            <h1 style="text-align: center;" class="title">معهد القيروان الفني</h1>
         </div>
         <div class="sections">
             <section>
-                <a href="bt1-nurse.html">
-                    <h1>BT1 تمريض<br> العناية الصحية</h1>
-                </a>
+                <h1 data-db="bt1-nurse">
+                    BT1 تمريض<br> العناية الصحية
+                </h1>
             </section>
             <section>
-                <a href="bt-social.html">
-                    <h1> BT محاسبة <br> العلوم الاجتماعية</h1>
-                </a>
+                <h1 data-db="bt-social"> 
+                    BT محاسبة <br> العلوم الاجتماعية
+                </h1>
             </section>
             <section>
-                <a href="bt3-nurse.html">
-                    <h1>BT3 تمريض<br> العناية الصحية</h1>
-                </a>
+                <h1 data-db="bt3-nurse">
+                    BT3 تمريض<br> العناية الصحية
+                </h1>
             </section>
         </div>
+
+        <div class="container" id="quiz">
+            <div class="container-header">
+                <h1 id="question"></h1>
+                <ul id="list">
+                    <li>
+                        <input type="radio" name="answer" id="1" class="answer">
+                        <label for="1" id="a_text"></label>
+                    </li>
+                    <li>
+                        <input type="radio" name="answer" id="2" class="answer">
+                        <label for="2" id="b_text"></label>
+                    </li>
+                    <li>
+                        <input type="radio" name="answer" id="3" class="answer">
+                        <label for="3" id="c_text"></label>
+                    </li>
+                </ul>
+            </div>
+        <button id="submit">متابعة</button>
+        </div>
+
+        <div class="wrong"></div>
+
     </main>
+
+    <script src="../main.js"></script>
 </body>
 </html>

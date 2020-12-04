@@ -77,13 +77,13 @@ main {
     justify-content: center;
     align-items: center;
     vertical-align: middle;
-    /* font-size: 2em; */
-    margin-bottom: .4em;
+    font-size: 1.5em;
     /* background-color: teal; */
     text-align: center;
     cursor: pointer;
     box-shadow: 0 0 7px 7px lightgray;
-    margin: 25px;
+    margin: 0.8em;
+    color: #333;
 }
 
 main section a {
@@ -254,6 +254,7 @@ button:hover {
 
 footer {
     background-color: #2d711f;
+    background-image: linear-gradient( #1e5e11, #111);
     padding: 1em 2em;
     font-family: amiri;
     font-size: 1.4em;
